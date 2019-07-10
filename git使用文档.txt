@@ -1,0 +1,54 @@
+git命令
+一.创建代码库
+1.在全英文路径下(有非英文的话有可能会出错)创建空文件夹(也可以不空)
+
+2.使用git bash cd进入到该文件夹下输入git init
+  注:Initialized empty Git repository in /Users/michael/learngit/.git/(成功的提示)
+
+3.把需要提交的文件添加进来,可以添加很多, git add file2.txt file3.txt
+
+4.提交,这一步一共做了2件事,一个是把前面add的所有文件提交上去,一个是在-m后面加入了本次提交的说明
+  git commit -m "add +++"
+  
+5.git status查看当前的文件状态,可以看到有哪些文件被修改过了
+
+6.git diff readme.txt  查看具体到某个文件修改了什么
+
+7.git log 显示从最近到最远的提交日志
+
+8.git log --pretty=oneline 精简版显示从最近到最远的提交日志
+
+9.版本回退  git reset --hard HEAD^          git reset --hard HEAD~100
+在Git中，用HEAD表示当前版本，也就是最新的提交1094adb...（注意我的提交ID和你的肯定不一样），
+上一个版本就是HEAD^，上上一个版本就是HEAD^^，当然往上100个版本写100个^比较容易数不过来，所以写成HEAD~100。
+
+10.回退之后想回到最后提交的版本
+  git reflog 查看之前所有的提交和回退命令动作,找到想要回去的版本号
+  git reset --hard commit_id  将commit_id换成你想要回去的版本号
+  
+11.丢弃暂存的修改   git checkout -- readme.txt  
+
+	一种是readme.txt自修改后还没有被放到暂存区，现在，撤销修改就回到和版本库一模一样的状态；
+	一种是readme.txt已经添加到暂存区后，又作了修改，现在，撤销修改就回到添加到暂存区后的状态。
+	总之，就是让这个文件回到最近一次git commit或git add时的状态。
+
+12.	删除文件
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
