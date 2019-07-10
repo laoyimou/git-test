@@ -65,9 +65,25 @@ git命令
 
 	删除分支：git branch -d <name>	
 	
+5.分支合并冲突   git merge feature1  (feature1是分支名称)
+	分支可以自由修改,但是最后分支肯定还是要合并到主分支的,这时候如果主分支修改了某些东西就会和分支产生冲突.
 	
+	git status 查看合并冲突的文件,以下举例,
+	Git用<<<<<<<，=======，>>>>>>>标记出不同分支的内容，
+	我们修改如下后保存：再提交合并,最后用git log可以查看合并情况,如果完成,本分支就功德圆满,就可以删除掉了 git branch -d <name>
 	
+	Git has a mutable index called stage.
+	Git tracks changes of files.
+	<<<<<<< HEAD
+	Creating a new branch is quick & simple.
+	=======
+	Creating a new branch is quick AND simple.
+	>>>>>>> feature1
 	
+6.分支管理策略,强制禁止使用fast forward模式,可以保留分支信息
+	由于git默认使用fast forward模式来合并分支,这种模式下如果删除分支的话会删除掉分支信息
+	如果使用强制禁用fast forward模式来合并分支的话,合并时git会生成新的commit,这样即使删除掉分支,其信息也还会保留下来
+	git merge --no-ff -m "merge with no-ff" dev  请注意--no-ff参数，表示禁用Fast forward：
 	
 	
 	
