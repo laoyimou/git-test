@@ -46,6 +46,7 @@ git命令
 	由于远程库是空的，我们第一次推送master分支时，加上了-u参数，Git不但会把本地的master分支
 	内容推送的远程新的master分支，还会把本地的master分支和远程的master分支关联起来，在以后的推送或者拉取时就可以简化命令。
 
+	
 3.从远程仓库克隆代码到本地
 	git clone git@github.com:laoyimou/from-git
 	(由于giubub用户名是唯一的,所以可以作为下载路径,公司内部的话,用户名应该由公司分配,避免个人重名)	
@@ -64,6 +65,7 @@ git命令
 	合并分支1到当前分支：git merge <name>  (必须先切换到当前分支,然后才可以将某分支1合并过来)
 
 	删除分支：git branch -d <name>	
+	若分支还没有被合并，如果删除，将丢失掉修改，如果要强行删除，需要使用大写的-D参数 git branch -D <name>
 	
 5.分支合并冲突   git merge feature1  (feature1是分支名称)
 	分支可以自由修改,但是最后分支肯定还是要合并到主分支的,这时候如果主分支修改了某些东西就会和分支产生冲突.
@@ -85,11 +87,24 @@ git命令
 	如果使用强制禁用fast forward模式来合并分支的话,合并时git会生成新的commit,这样即使删除掉分支,其信息也还会保留下来
 	git merge --no-ff -m "merge with no-ff" dev  请注意--no-ff参数，表示禁用Fast forward：
 
-7.	 
+7.	 git stash   当你有时候还不想提交代码,又想将当前的代码状态保存起来的时候,用这个命令就可以,
+	 git stash list  查看保存记录
+	 git stash apply 恢复最后一次保存的                 git stash apply stash@{0} 指定恢复某一次保存的   
+	 git stash pop   恢复最后一次保存的并擦除记录      git stash pop stash@{0}    指定恢复某一次保存的并擦除记录   
+ 
+8.	多人协作技巧
+
+	要查看远程库分支的信息，用git remote 或者，用git remote -v显示更详细的信息.
+	推送分支，就是把该分支上的所有本地提交推送到远程库。
+	推送时，要指定本地分支，这样，Git就会把该分支推送到远程库对应的远程分支上：
+	git push origin dev  origin是远程的主分支,dev是本地的dev分支
 	
+	本地分支与远程分支绑定
+	git branch --set-upstream-to=origin/dev dev  将本地的dev和远程的dev进行绑定,下次直接提交就是将本地dev提交到远程的dev
+	如果是直接创建本地分支斌同时绑定远程分支  git checkout -b dev origin/dev
 	
-	
-	
+	git pull 提交代码前先进去代码合并,就是同步远程分支的最新代码到自己的本地代码上,看看有没有冲突,解决好之后在提交到远程分支
+	解决后先git commit -m "fix env conflict",再 git push origin dev
 	
 	
 	
