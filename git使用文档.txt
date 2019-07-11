@@ -1,5 +1,5 @@
 git命令
-一.创建代码库
+一.创建本地代码库
 1.在全英文路径下(有非英文的话有可能会出错)创建空文件夹(也可以不空)
 
 2.使用git bash cd进入到该文件夹下输入git init
@@ -32,11 +32,60 @@ git命令
 	一种是readme.txt已经添加到暂存区后，又作了修改，现在，撤销修改就回到添加到暂存区后的状态。
 	总之，就是让这个文件回到最近一次git commit或git add时的状态。
 
-12.	删除文件
+12.	从git版本管理中删除文件  git rm test.txt
+
+13.从git版本管理中checkout文件 git checkout -- test.txt
+
+二.创建远程仓库(以在github创建远程仓库为例,具体参考https://www.liaoxuefeng.com/wiki/896043488029600/896954117292416)
+
+1.关联仓库 git remote add origin git@github.com:laoyimou/git-test.git  (laoyimou是个人在github上的用户名,不要写错)
+
+2.将本地内容推送到远程仓库  git push -u origin master,常规的是git push origin master
+
+	把本地库的内容推送到远程，用git push命令，实际上是把当前分支master推送到远程。
+	由于远程库是空的，我们第一次推送master分支时，加上了-u参数，Git不但会把本地的master分支
+	内容推送的远程新的master分支，还会把本地的master分支和远程的master分支关联起来，在以后的推送或者拉取时就可以简化命令。
+
+3.从远程仓库克隆代码到本地
+	git clone git@github.com:laoyimou/from-git
+	(由于giubub用户名是唯一的,所以可以作为下载路径,公司内部的话,用户名应该由公司分配,避免个人重名)	
 	
+4.分支
+	Git鼓励大量使用分支：
+
+	查看分支：git branch
+
+	创建分支：git branch <name>
+
+	切换分支：git checkout <name>
+
+	创建+切换分支：git checkout -b <name>
+
+	合并某分支到当前分支：git merge <name>
+
+	删除分支：git branch -d <name>	
 	
+5.分支合并冲突   git merge feature1  (feature1是分支名称)
+	分支可以自由修改,但是最后分支肯定还是要合并到主分支的,这时候如果主分支修改了某些东西就会和分支产生冲突.
 	
+	git status 查看合并冲突的文件,以下举例,
+	Git用<<<<<<<，=======，>>>>>>>标记出不同分支的内容，
+	我们修改如下后保存：再提交合并,最后用git log可以查看合并情况,如果完成,本分支就功德圆满,就可以删除掉了 git branch -d <name>
 	
+	Git has a mutable index called stage.
+	Git tracks changes of files.
+	<<<<<<< HEAD
+	Creating a new branch is quick & simple.
+	=======
+	Creating a new branch is quick AND simple.
+	>>>>>>> feature1
+	
+6.分支管理策略,强制禁止使用fast forward模式,可以保留分支信息.
+	由于git默认使用fast forward模式来合并分支,这种模式下如果删除分支的话会删除掉分支信息
+	如果使用强制禁用fast forward模式来合并分支的话,合并时git会生成新的commit,这样即使删除掉分支,其信息也还会保留下来
+	git merge --no-ff -m "merge with no-ff" dev  请注意--no-ff参数，表示禁用Fast forward：
+
+7.	
 	
 	
 	
