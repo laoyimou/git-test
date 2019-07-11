@@ -61,7 +61,7 @@ git命令
 
 	创建+切换分支：git checkout -b <name>
 
-	合并某分支到当前分支：git merge <name>
+	合并分支1到当前分支：git merge <name>  (必须先切换到当前分支,然后才可以将某分支1合并过来)
 
 	删除分支：git branch -d <name>	
 	
