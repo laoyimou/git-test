@@ -85,7 +85,7 @@ git命令
 	如果使用强制禁用fast forward模式来合并分支的话,合并时git会生成新的commit,这样即使删除掉分支,其信息也还会保留下来
 	git merge --no-ff -m "merge with no-ff" dev  请注意--no-ff参数，表示禁用Fast forward：
 
-7.	
+7.	 
 	
 	
 	
